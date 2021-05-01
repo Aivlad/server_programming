@@ -10,15 +10,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\ViewComponents\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="Areas\Admin\Views\ServiceItems\Edit.cshtml" />
     <None Include="Areas\Admin\Views\TextFields\Edit.cshtml" />
     <None Include="bundleconfig.json" />
     <None Include="compilerconfig.json" />
     <None Include="Views\Account\Login.cshtml" />
+    <None Include="Views\Services\Index.cshtml" />
+    <None Include="Views\Services\Show.cshtml" />
+    <None Include="Views\Shared\Components\Sidebar\Default.cshtml" />
   </ItemGroup>
 
   <ItemGroup>

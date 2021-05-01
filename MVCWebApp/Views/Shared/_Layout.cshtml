@@ -17,8 +17,8 @@
                         <div class="col-8 col-12-medium">
                             @RenderBody()
                         </div>
+                        @await Html.PartialAsync("SidebarPartial")
                     </div>
-                    @await Html.PartialAsync("SidebarPartial")
                 </div>
             </div>
 
