@@ -16,24 +16,32 @@ namespace MVCWebApp
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            // добавляем поддкржку контроллеров и представлений (mvc)
+            services.AddControllersWithViews()
+                // выставляем совместимость с asp.net core 3.0
+                .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0).AddSessionStateTempDataProvider();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
+            // если мы в окружении разработки (дефолт) т.е., например, в проде это недоступно
+            // др. слвоами: в процессе разработки нам важно видеть подробную информацию об ошибках
+            if (env.IsDevelopment())    
             {
-                app.UseDeveloperExceptionPage();
+                app.UseDeveloperExceptionPage();    // хотим получать все представления об ошибках (дефолт)
             }
 
-            app.UseRouting();
+            app.UseRouting(); // добавляется система маршрутизации (дефолт)
 
-            app.UseEndpoints(endpoints =>
+            // подключаем поддержку статичных файлов в приложении (css, js и т.п. из wwwroot)
+            app.UseStaticFiles();
+
+            // используются маршруты (дефолт)
+            // др. словами: регистрируем нужные нам маршруты (endpoints)
+            app.UseEndpoints(endpoints =>   
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
